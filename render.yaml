@@ -3,10 +3,6 @@ services:
     name: my-konnect-backend
     env: docker
     dockerfilePath: ./backend/Dockerfile
-    envVars:
-      SPRING_DATASOURCE_USERNAME: "admin"
-      SPRING_DATASOURCE_PASSWORD: "Bhargav@06"
-      SPRING_PROFILES_ACTIVE: "prod"
 
   - type: web
     name: my-konnect-frontend
