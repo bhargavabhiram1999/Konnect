@@ -4,7 +4,7 @@ services:
     env: docker
     dockerfilePath: ./backend/Dockerfile
     envVars:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://konnect_1y7n_user:yAwiceGi0X5vrTTCueyc7TRsCQQBLVny@dpg-cshotlaj1k6c739cckc0-a/konnect_1y7n"
+      SPRING_DATASOURCE_URL: "postgresql://konnect_1y7n_user:yAwiceGi0X5vrTTCueyc7TRsCQQBLVny@dpg-cshotlaj1k6c739cckc0-a/konnect_1y7n"
       SPRING_DATASOURCE_USERNAME: "admin"
       SPRING_DATASOURCE_PASSWORD: "Bhargav@06"
       SPRING_PROFILES_ACTIVE: "prod"
