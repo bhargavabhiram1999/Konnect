@@ -2,7 +2,7 @@ services:
   - type: web
     name: my-konnect-backend
     env: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./backend/src/Dockerfile
 
   - type: web
     name: my-konnect-frontend
