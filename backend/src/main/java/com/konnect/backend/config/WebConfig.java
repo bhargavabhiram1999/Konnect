@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**") // Change this to match your API endpoints
-                .allowedOrigins("http://localhost:3000") // React app URL
+                .allowedOrigins("https://konnect-frontend.onrender.com") // React app URL
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }
