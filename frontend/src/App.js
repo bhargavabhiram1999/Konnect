@@ -5,8 +5,8 @@ import LoginForm from './components/LoginForm';
 const App = () => {
     return (
         <div>
-            <h1>User List</h1>
-            <UserList />
+            {/*<h1>User List</h1>
+            <UserList />*/}
             <LoginForm />
         </div>
     );
