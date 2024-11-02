@@ -1,7 +1,10 @@
-# Start from an official Java runtime as a parent image
+# Use OpenJDK as the base image
 FROM openjdk:17-jdk-alpine
 
-# Set the working directory in the container
+# Install Maven
+RUN apk add --no-cache maven
+
+# Set the working directory
 WORKDIR /app
 
 # Copy Maven files and source code
