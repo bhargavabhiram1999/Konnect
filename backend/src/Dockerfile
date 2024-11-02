@@ -1,21 +1,15 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim
+# Start from an official Java runtime as a parent image
+FROM openjdk:17-jdk-alpine
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the pom.xml and source code
-COPY pom.xml .
-COPY src ./src
+# Copy Maven files and source code
+COPY backend/pom.xml backend/
+COPY backend/src backend/src
 
-# Build the application
-RUN ./mvnw clean install
+# Build the Spring Boot application
+RUN cd backend && ./mvnw clean install -DskipTests
 
-# Copy the jar file to the container
-COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port the app runs on
-EXPOSE 8080
-
-# Command to run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the Spring Boot app
+CMD ["java", "-jar", "backend/target/backend-0.0.1-SNAPSHOT.jar"]
