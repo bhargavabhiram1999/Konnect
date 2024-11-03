@@ -58,7 +58,7 @@ const LoginForm = () => {
                 
             } catch (err) {
                 if (err.response && err.response.data) {
-                    setErrorMessage(err.response.data); // Set the error message from the backend
+                    setSignUpErrorMessage(err.response.data); // Set the error message from the backend
                 } else {
                     setSignUpErrorMessage('An unexpected error occurred.'); // Generic error message
                 }            

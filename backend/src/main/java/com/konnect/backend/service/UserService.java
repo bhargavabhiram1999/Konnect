@@ -1,5 +1,6 @@
 package com.konnect.backend.service;
 
+import com.konnect.backend.exception.UserAlreadyExistsException;
 import com.konnect.backend.model.User;
 import com.konnect.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class UserService {
     }
 
     public User saveUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException("Email already in use.");
+        }
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
         return userRepository.save(user);
