@@ -1,13 +1,17 @@
 import React from 'react';
-import UserList from './components/UserList';
 import LoginForm from './components/LoginForm';
+import Welcome from './components/Welcome';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
     return (
         <div>
-            <h1>User List</h1>
-            <UserList />
-            <LoginForm />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/welcome" element={<Welcome />} />
+      </Routes>
+    </BrowserRouter>
         </div>
     );
 };

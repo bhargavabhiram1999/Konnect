@@ -14,6 +14,7 @@ public class User {
     private String username; // New field for username
     private String email;
     private String profilePicture; // New field for profile picture URL
+    private String password;
 
     // Getters and Setters
     public Long getId() {
@@ -46,6 +47,14 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 
