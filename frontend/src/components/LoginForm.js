@@ -7,7 +7,11 @@ import '../styles/LoginForm.css'; // Import the CSS file
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [signUpEmail, setSignUpEmail] = useState('');
+    const [signPassword, setSignPassword] = useState('');
+    const [signRePassword, setSignRePassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
+    const [signUpErrorMessage, setSignUpErrorMessage] = useState('');
     const { login } = useAuth(); // Get login function from context
     const navigate = useNavigate();
 
@@ -36,7 +40,37 @@ const LoginForm = () => {
         }
     };
 
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        setSignUpErrorMessage('');
+        
+        if(signRePassword === signPassword) {
+            try {
+                const response = await axios.post('https://konnect-1.onrender.com/api/users', {
+                    email: signUpEmail,
+                    password: signPassword,
+                    username: "signUpUsername", // Assuming you have a field for the username
+                    profilePicture: "signUpProfilePicture" // Assuming you have a field for the profile picture URL
+                });
+                console.log("Created user" + response);
+                alert("Created User");
+                window.location.reload();
+                
+            } catch (err) {
+                if (err.response && err.response.data) {
+                    setErrorMessage(err.response.data); // Set the error message from the backend
+                } else {
+                    setSignUpErrorMessage('An unexpected error occurred.'); // Generic error message
+                }            
+            }
+        } else {
+            setSignUpErrorMessage('Passwords doesn\'t match');
+        }
+        
+    };
+
     return (
+        <div>
         <div className="login-container">
             <h2>Login</h2>
             <form onSubmit={handleLogin} className="login-form">
@@ -65,6 +99,49 @@ const LoginForm = () => {
                 {errorMessage && <p className="error">{errorMessage}</p>}
                 <button type="submit" className="button">Login</button>
             </form>
+        </div>
+
+        <div className="login-container">
+            <h2>Sign Up!</h2>
+            <form onSubmit={handleSignUp} className="sign-up-form">
+                <div className="input-container">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="sign-up-email"
+                        value={signUpEmail}
+                        onChange={(e) => setSignUpEmail(e.target.value)}
+                        required
+                        className="input"
+                    />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="sign-password"
+                        value={signPassword}
+                        onChange={(e) => setSignPassword(e.target.value)}
+                        required
+                        className="input"
+                    />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="password">Re-enter Password:</label>
+                    <input
+                        type="password"
+                        id="sign-re-password"
+                        value={signRePassword}
+                        onChange={(e) => setSignRePassword(e.target.value)}
+                        required
+                        className="input"
+                    />
+                </div>
+                {signUpErrorMessage && <p className="error">{signUpErrorMessage}</p>}
+                <button type="submit" className="button">Sign Up!</button>
+            </form>
+        </div>
+
         </div>
     );
 };
