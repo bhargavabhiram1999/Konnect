@@ -8,6 +8,7 @@ const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [signUpEmail, setSignUpEmail] = useState('');
+    const [userName, setUserName] = useState('');
     const [signPassword, setSignPassword] = useState('');
     const [signRePassword, setSignRePassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
@@ -49,7 +50,7 @@ const LoginForm = () => {
                 const response = await axios.post('https://konnect-1.onrender.com/api/users', {
                     email: signUpEmail,
                     password: signPassword,
-                    username: "signUpUsername", // Assuming you have a field for the username
+                    username: userName, // Assuming you have a field for the username
                     profilePicture: "signUpProfilePicture" // Assuming you have a field for the profile picture URL
                 });
                 console.log("Created user" + response);
@@ -111,6 +112,17 @@ const LoginForm = () => {
                         id="sign-up-email"
                         value={signUpEmail}
                         onChange={(e) => setSignUpEmail(e.target.value)}
+                        required
+                        className="input"
+                    />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="username">Username:</label>
+                    <input
+                        type="name"
+                        id="username"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
                         required
                         className="input"
                     />
